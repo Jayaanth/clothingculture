@@ -1,0 +1,73 @@
+.fade-in{
+
+  animation:
+    fadeIn .8s ease forwards;
+}
+
+.slide-up{
+
+  animation:
+    slideUp .8s ease forwards;
+}
+
+.float{
+
+  animation:
+    floating 4s ease-in-out infinite;
+}
+
+.hover-lift{
+
+  transition:
+    .3s ease;
+}
+
+.hover-lift:hover{
+
+  transform:
+    translateY(-8px);
+}
+
+@keyframes fadeIn{
+
+  from{
+    opacity:0;
+  }
+
+  to{
+    opacity:1;
+  }
+}
+
+@keyframes slideUp{
+
+  from{
+    opacity:0;
+    transform:
+      translateY(30px);
+  }
+
+  to{
+    opacity:1;
+    transform:
+      translateY(0);
+  }
+}
+
+@keyframes floating{
+
+  0%{
+    transform:
+      translateY(0);
+  }
+
+  50%{
+    transform:
+      translateY(-10px);
+  }
+
+  100%{
+    transform:
+      translateY(0);
+  }
+}
