@@ -1,24 +1,26 @@
 import api from "./api";
 
 export const getCategories =
-  async () => {
-
-    const response =
+  async () =>
+    (
       await api.get(
         "/categories"
-      );
-
-    return response.data;
-  };
+      )
+    ).data;
 
 export const createCategory =
-  async (category) => {
-
-    const response =
+  async (data) =>
+    (
       await api.post(
         "/categories",
-        category
-      );
+        data
+      )
+    ).data;
 
-    return response.data;
-  };
+export const deleteCategory =
+  async (id) =>
+    (
+      await api.delete(
+        `/categories/${id}`
+      )
+    ).data;

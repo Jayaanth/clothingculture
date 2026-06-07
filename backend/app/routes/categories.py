@@ -42,3 +42,38 @@ def add_category(
     db.refresh(item)
 
     return item
+
+@router.delete(
+    "/categories/{id}"
+)
+def delete_category(
+    id: int,
+    db: Session = Depends(get_db),
+    admin=Depends(
+        get_current_admin
+    )
+):
+
+    category = (
+        db.query(Category)
+        .filter(
+            Category.id == id
+        )
+        .first()
+    )
+
+    if not category:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Category not found"
+        )
+
+    db.delete(category)
+
+    db.commit()
+
+    return {
+        "message":
+        "Category deleted"
+    }

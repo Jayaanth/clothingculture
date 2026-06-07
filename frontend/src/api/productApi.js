@@ -1,61 +1,32 @@
-import api from "./api";
+export const getProducts = async () =>
+  (await api.get("/products")).data;
 
-export const getProducts =
-  async () => {
+export const createProduct = async (data) =>
+  (await api.post("/products", data)).data;
 
-    const response =
-      await api.get(
-        "/products"
-      );
+export const deleteProduct = async (id) =>
+  (await api.delete(`/products/${id}`)).data;
 
-    return response.data;
-  };
+export const uploadProductImage = async (file) => {
 
-export const createProduct =
-  async (product) => {
+  const formData =
+    new FormData();
 
-    const response =
-      await api.post(
-        "/products",
-        product
-      );
+  formData.append(
+    "file",
+    file
+  );
 
-    return response.data;
-  };
-
-export const deleteProduct =
-  async (id) => {
-
-    const response =
-      await api.delete(
-        `/products/${id}`
-      );
-
-    return response.data;
-  };
-
-export const uploadProductImage =
-  async (file) => {
-
-    const formData =
-      new FormData();
-
-    formData.append(
-      "file",
-      file
-    );
-
-    const response =
-      await api.post(
-        "/upload/product-image",
-        formData,
-        {
-          headers: {
-            "Content-Type":
-              "multipart/form-data",
-          },
+  return (
+    await api.post(
+      "/upload/product-image",
+      formData,
+      {
+        headers:{
+          "Content-Type":
+          "multipart/form-data"
         }
-      );
-
-    return response.data;
-  };
+      }
+    )
+  ).data;
+};

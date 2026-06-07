@@ -1,24 +1,43 @@
 import api from "./api";
 
 export const getBranding =
-  async () => {
-
-    const response =
+  async () =>
+    (
       await api.get(
         "/branding"
-      );
-
-    return response.data;
-  };
+      )
+    ).data;
 
 export const updateBranding =
-  async (branding) => {
-
-    const response =
+  async (data) =>
+    (
       await api.put(
         "/branding",
-        branding
-      );
+        data
+      )
+    ).data;
 
-    return response.data;
+export const uploadLogo =
+  async (file) => {
+
+    const formData =
+      new FormData();
+
+    formData.append(
+      "file",
+      file
+    );
+
+    return (
+      await api.post(
+        "/upload/logo",
+        formData,
+        {
+          headers:{
+            "Content-Type":
+            "multipart/form-data"
+          }
+        }
+      )
+    ).data;
   };
