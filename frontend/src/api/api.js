@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://didactic-spork-6p4wg94g9wjh4j5p-8000.app.github.dev/api",
+  baseURL: import.meta.env.VITE_API_BASE,
   headers: {
     "Content-Type": "application/json",
   },
