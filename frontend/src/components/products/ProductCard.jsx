@@ -2,15 +2,9 @@ export default function ProductCard({
   product
 }) {
 
-  const FILE_BASE =
-    import.meta.env
-      .VITE_API_BASE
-      .replace("/api", "");
-
   const imageUrl =
-    product.image
-      ? `${FILE_BASE}${product.image}`
-      : "/logo.svg";
+  product.image ||
+  "/logo.svg";
 
   return (
 

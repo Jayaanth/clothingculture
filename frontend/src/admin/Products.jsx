@@ -8,8 +8,7 @@ import AdminLayout from "./components/AdminLayout";
 import {
   getProducts,
   createProduct,
-  deleteProduct,
-  uploadProductImage
+  deleteProduct
 } from "../api/productApi";
 
 export default function Products() {
@@ -30,11 +29,6 @@ export default function Products() {
       price: "",
       image: ""
     });
-
-  const FILE_BASE =
-    import.meta.env
-      .VITE_API_BASE
-      .replace("/api", "");
 
   useEffect(() => {
 
@@ -58,36 +52,6 @@ export default function Products() {
     } finally {
 
       setLoading(false);
-
-    }
-
-  }
-
-  async function handleImageUpload(
-    e
-  ) {
-
-    const file =
-      e.target.files[0];
-
-    if (!file) return;
-
-    try {
-
-      const result =
-        await uploadProductImage(
-          file
-        );
-
-      setForm({
-        ...form,
-        image:
-          result.image_url
-      });
-
-    } catch (error) {
-
-      console.error(error);
 
     }
 
@@ -226,12 +190,30 @@ export default function Products() {
             />
 
             <input
-              type="file"
-              accept="image/*"
-              onChange={
-                handleImageUpload
+              type="text"
+              placeholder="Cloudinary Image URL"
+              value={form.image}
+              onChange={(e)=>
+                setForm({
+                  ...form,
+                  image:
+                    e.target.value
+                })
               }
+              required
             />
+
+            {form.image && (
+
+              <img
+                src={form.image}
+                alt="Preview"
+                className="
+                admin-product-image
+                "
+              />
+
+            )}
 
             <button
               type="submit"
@@ -312,7 +294,7 @@ export default function Products() {
 
                           <img
                             src={
-                              `${FILE_BASE}${product.image}`
+                              product.image
                             }
                             alt={
                               product.name
