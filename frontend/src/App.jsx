@@ -1,5 +1,4 @@
 import {
-  BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
@@ -23,94 +22,90 @@ function App() {
 
   return (
 
-    <BrowserRouter>
+    <Routes>
 
-      <Routes>
+      {/* Public Website */}
 
-        {/* Public Website */}
+      <Route
+        path="/"
+        element={<Home />}
+      />
 
-        <Route
-          path="/"
-          element={<Home />}
-        />
+      <Route
+        path="/catalog"
+        element={<Catalog />}
+      />
 
-        <Route
-          path="/catalog"
-          element={<Catalog />}
-        />
+      <Route
+        path="/about"
+        element={<About />}
+      />
 
-        <Route
-          path="/about"
-          element={<About />}
-        />
+      <Route
+        path="/contact"
+        element={<Contact />}
+      />
 
-        <Route
-          path="/contact"
-          element={<Contact />}
-        />
+      {/* Admin */}
 
-        {/* Admin */}
+      <Route
+        path="/admin/login"
+        element={<Login />}
+      />
 
-        <Route
-          path="/admin/login"
-          element={<Login />}
-        />
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
+      <Route
+        path="/admin/products"
+        element={
+          <ProtectedRoute>
+            <Products />
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/admin/products"
-          element={
-            <ProtectedRoute>
-              <Products />
-            </ProtectedRoute>
-          }
-        />
+      <Route
+        path="/admin/categories"
+        element={
+          <ProtectedRoute>
+            <Categories />
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/admin/categories"
-          element={
-            <ProtectedRoute>
-              <Categories />
-            </ProtectedRoute>
-          }
-        />
+      <Route
+        path="/admin/branding"
+        element={
+          <ProtectedRoute>
+            <Branding />
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/admin/branding"
-          element={
-            <ProtectedRoute>
-              <Branding />
-            </ProtectedRoute>
-          }
-        />
+      <Route
+        path="/admin/inquiries"
+        element={
+          <ProtectedRoute>
+            <Inquiries />
+          </ProtectedRoute>
+        }
+      />
 
-        <Route
-          path="/admin/inquiries"
-          element={
-            <ProtectedRoute>
-              <Inquiries />
-            </ProtectedRoute>
-          }
-        />
+      {/* 404 */}
 
-        {/* 404 */}
+      <Route
+        path="*"
+        element={<NotFound />}
+      />
 
-        <Route
-          path="*"
-          element={<NotFound />}
-        />
-
-      </Routes>
-
-    </BrowserRouter>
+    </Routes>
 
   );
 
