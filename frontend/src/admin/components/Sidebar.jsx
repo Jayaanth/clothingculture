@@ -48,12 +48,7 @@ export default function Sidebar() {
           Products
         </NavLink>
 
-        <NavLink
-          to="/admin/categories"
-        >
-          <Tags />
-          Categories
-        </NavLink>
+  
 
         <NavLink
           to="/admin/branding"

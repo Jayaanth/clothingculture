@@ -116,17 +116,7 @@ export default function Dashboard() {
               }
             />
 
-            <StatCard
-              title="Categories"
-              value={
-                stats.total_categories
-              }
-              icon={
-                <Tags
-                  size={28}
-                />
-              }
-            />
+
 
             <StatCard
               title="Inquiries"
@@ -167,14 +157,6 @@ export default function Dashboard() {
                 Add Product
               </a>
 
-              <a
-                href="/admin/categories"
-                className="
-                action-card
-                "
-              >
-                Manage Categories
-              </a>
 
               <a
                 href="/admin/branding"

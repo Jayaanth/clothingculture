@@ -6,7 +6,6 @@ from sqlalchemy.orm import Session
 from ..database import get_db
 
 from ..models.product import Product
-from ..models.category import Category
 from ..models.inquiry import Inquiry
 
 from ..utils.auth import (
@@ -25,9 +24,7 @@ def get_dashboard_stats(
         Product
     ).count()
 
-    total_categories = db.query(
-        Category
-    ).count()
+    
 
     total_inquiries = db.query(
         Inquiry
@@ -58,8 +55,7 @@ def get_dashboard_stats(
             "products":
                 total_products,
 
-            "categories":
-                total_categories,
+            
 
             "inquiries":
                 total_inquiries,
