@@ -1,7 +1,10 @@
 import React from "react";
 
-import ReactDOM from
-"react-dom/client";
+import ReactDOM from "react-dom/client";
+
+import {
+  BrowserRouter
+} from "react-router-dom";
 
 import App from "./App";
 
@@ -17,22 +20,24 @@ import {
 } from "./context/BrandingContext";
 
 ReactDOM.createRoot(
-  document.getElementById(
-    "root"
-  )
+  document.getElementById("root")
 ).render(
 
   <React.StrictMode>
 
-    <AuthProvider>
+    <BrowserRouter>
 
-      <BrandingProvider>
+      <AuthProvider>
 
-        <App />
+        <BrandingProvider>
 
-      </BrandingProvider>
+          <App />
 
-    </AuthProvider>
+        </BrandingProvider>
+
+      </AuthProvider>
+
+    </BrowserRouter>
 
   </React.StrictMode>
 
