@@ -12,7 +12,7 @@ import NotFound from "./pages/NotFound";
 import Login from "./admin/Login";
 import Dashboard from "./admin/Dashboard";
 import Products from "./admin/Products";
-import Categories from "./admin/Categories";
+
 import Branding from "./admin/Branding";
 import Inquiries from "./admin/Inquiries";
 
@@ -71,14 +71,7 @@ function App() {
         }
       />
 
-      <Route
-        path="/admin/categories"
-        element={
-          <ProtectedRoute>
-            <Categories />
-          </ProtectedRoute>
-        }
-      />
+
 
       <Route
         path="/admin/branding"

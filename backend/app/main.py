@@ -11,7 +11,7 @@ from .database import SessionLocal
 
 from .models.admin import Admin
 from .models.product import Product
-from .models.category import Category
+
 from .models.branding import Branding
 from .models.inquiry import Inquiry
 
@@ -19,7 +19,7 @@ from .utils.security import hash_password
 
 from .routes.auth import router as auth_router
 from .routes.products import router as product_router
-from .routes.categories import router as category_router
+
 from .routes.uploads import router as upload_router
 from .routes.branding import router as branding_router
 from .routes.inquiries import router as inquiry_router
@@ -99,10 +99,7 @@ app.include_router(
     prefix="/api"
 )
 
-app.include_router(
-    category_router,
-    prefix="/api"
-)
+
 
 app.include_router(
     branding_router,
