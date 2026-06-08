@@ -35,7 +35,7 @@ Base.metadata.create_all(
 db = SessionLocal()
 
 admin = db.query(Admin).filter(
-    Admin.username == "admin"
+    Admin.username == "Admin"
 ).first()
 
 if not admin:
@@ -43,7 +43,7 @@ if not admin:
     db.add(
         Admin(
             username="Admin",
-            password=hash_password("Annexure")
+            password="Annexure"
         )
     )
 
