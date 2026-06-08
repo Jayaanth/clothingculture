@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from fastapi.staticfiles import StaticFiles
+
+import os
+
 from .database import Base
 from .database import engine
-
-from .routes.auth import router as auth_router
-from .routes.products import router as product_router
-from .routes.categories import router as category_router
+from .database import SessionLocal
 
 from .models.admin import Admin
 from .models.product import Product
@@ -14,26 +15,47 @@ from .models.category import Category
 from .models.branding import Branding
 from .models.inquiry import Inquiry
 
-from fastapi.openapi.utils import get_openapi
+from .utils.security import hash_password
 
-from fastapi.staticfiles import StaticFiles
-
+from .routes.auth import router as auth_router
+from .routes.products import router as product_router
+from .routes.categories import router as category_router
 from .routes.uploads import router as upload_router
+from .routes.branding import router as branding_router
+from .routes.inquiries import router as inquiry_router
+from .routes.dashboard import router as dashboard_router
 
-from .routes.branding import (
-    router as branding_router
-)
-
-from .routes.inquiries import (
-    router as inquiry_router
-)
-
-from .routes.dashboard import (
-    router as dashboard_router
-)
 
 Base.metadata.create_all(
     bind=engine
+)
+
+# Create default admin if missing
+
+db = SessionLocal()
+
+admin = db.query(Admin).filter(
+    Admin.username == "admin"
+).first()
+
+if not admin:
+
+    db.add(
+        Admin(
+            username="Admin",
+            password=hash_password("Annexure")
+        )
+    )
+
+    db.commit()
+
+db.close()
+
+# Ensure uploads folder exists
+
+os.makedirs(
+    "app/uploads",
+    exist_ok=True
 )
 
 app = FastAPI(
@@ -55,7 +77,9 @@ app.add_middleware(
 
 app.mount(
     "/uploads",
-    StaticFiles(directory="app/uploads"),
+    StaticFiles(
+        directory="app/uploads"
+    ),
     name="uploads"
 )
 
@@ -100,6 +124,14 @@ app.include_router(
 
 @app.get("/")
 def root():
+
     return {
         "status": "running"
+    }
+
+@app.get("/health")
+def health():
+
+    return {
+        "status": "ok"
     }
