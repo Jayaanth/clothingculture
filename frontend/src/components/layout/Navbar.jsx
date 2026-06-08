@@ -25,6 +25,11 @@ export default function Navbar() {
     branding
   } = useBranding();
 
+  const FILE_BASE =
+    import.meta.env
+      .VITE_API_BASE
+      .replace("/api", "");
+
   const closeMenu = () => {
     setOpen(false);
   };
@@ -39,25 +44,27 @@ export default function Navbar() {
         className="container navbar-container"
       >
 
-<Link
-  to="/"
-  className="navbar-logo"
->
+        <Link
+          to="/"
+          className="navbar-logo"
+        >
 
-  {branding?.logo && (
+          {branding?.logo && (
 
-    <img
-      src={`${import.meta.env.VITE_API_BASE}${branding.logo}`}
-      alt="ClothingCulture"
-    />
+            <img
+              src={
+                `${FILE_BASE}${branding.logo}`
+              }
+              alt="ClothingCulture"
+            />
 
-  )}
+          )}
 
-  <span>
-    ClothingCulture
-  </span>
+          <span>
+            ClothingCulture
+          </span>
 
-</Link>
+        </Link>
 
         <nav
           className="navbar-links"
@@ -104,8 +111,8 @@ export default function Navbar() {
         >
 
           {open
-            ? <X size={28}/>
-            : <Menu size={28}/>
+            ? <X size={28} />
+            : <Menu size={28} />
           }
 
         </button>

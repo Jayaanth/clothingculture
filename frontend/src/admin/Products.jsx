@@ -31,8 +31,15 @@ export default function Products() {
       image: ""
     });
 
+  const FILE_BASE =
+    import.meta.env
+      .VITE_API_BASE
+      .replace("/api", "");
+
   useEffect(() => {
+
     loadProducts();
+
   }, []);
 
   async function loadProducts() {
@@ -53,6 +60,7 @@ export default function Products() {
       setLoading(false);
 
     }
+
   }
 
   async function handleImageUpload(
@@ -74,7 +82,7 @@ export default function Products() {
       setForm({
         ...form,
         image:
-          result.file_url
+          result.image_url
       });
 
     } catch (error) {
@@ -82,6 +90,7 @@ export default function Products() {
       console.error(error);
 
     }
+
   }
 
   async function handleSubmit(
@@ -94,7 +103,9 @@ export default function Products() {
 
       setSaving(true);
 
-      await createProduct(form);
+      await createProduct(
+        form
+      );
 
       setForm({
         name: "",
@@ -114,6 +125,7 @@ export default function Products() {
       setSaving(false);
 
     }
+
   }
 
   async function removeProduct(
@@ -139,6 +151,7 @@ export default function Products() {
       console.error(error);
 
     }
+
   }
 
   return (
@@ -177,7 +190,7 @@ export default function Products() {
                 setForm({
                   ...form,
                   name:
-                  e.target.value
+                    e.target.value
                 })
               }
               required
@@ -193,7 +206,7 @@ export default function Products() {
                 setForm({
                   ...form,
                   description:
-                  e.target.value
+                    e.target.value
                 })
               }
             />
@@ -206,7 +219,7 @@ export default function Products() {
                 setForm({
                   ...form,
                   price:
-                  e.target.value
+                    e.target.value
                 })
               }
               required
@@ -223,9 +236,11 @@ export default function Products() {
             <button
               type="submit"
             >
+
               {saving
                 ? "Saving..."
                 : "Add Product"}
+
             </button>
 
           </form>
@@ -283,7 +298,8 @@ export default function Products() {
               <tbody>
 
                 {products.map(
-                  (product)=>(
+                  (product) => (
+
                     <tr
                       key={
                         product.id
@@ -296,11 +312,11 @@ export default function Products() {
 
                           <img
                             src={
-                              import.meta.env
-                              .VITE_API_BASE +
-                              product.image
+                              `${FILE_BASE}${product.image}`
                             }
-                            alt=""
+                            alt={
+                              product.name
+                            }
                             className="
                             admin-product-image
                             "
@@ -336,6 +352,7 @@ export default function Products() {
                       </td>
 
                     </tr>
+
                   )
                 )}
 

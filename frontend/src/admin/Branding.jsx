@@ -21,6 +21,11 @@ export default function Branding() {
     setSaving] =
     useState(false);
 
+  const FILE_BASE =
+    import.meta.env
+      .VITE_API_BASE
+      .replace("/api", "");
+
   useEffect(() => {
 
     loadBranding();
@@ -154,11 +159,9 @@ export default function Branding() {
 
             <img
               src={
-                import.meta.env
-                .VITE_API_BASE +
-                form.logo
+                `${FILE_BASE}${form.logo}`
               }
-              alt=""
+              alt="Logo Preview"
               className="
               branding-preview
               "
