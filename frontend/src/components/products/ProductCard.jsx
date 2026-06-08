@@ -2,9 +2,14 @@ export default function ProductCard({
   product
 }) {
 
+  const FILE_BASE =
+    import.meta.env
+      .VITE_API_BASE
+      .replace("/api", "");
+
   const imageUrl =
     product.image
-      ? product.image
+      ? `${FILE_BASE}${product.image}`
       : "/logo.svg";
 
   return (
@@ -22,6 +27,10 @@ export default function ProductCard({
         className="
         product-image
         "
+        onError={(e) => {
+          e.target.src =
+            "/logo.svg";
+        }}
       />
 
       <div
@@ -35,9 +44,7 @@ export default function ProductCard({
         </h3>
 
         <p>
-          {
-            product.description
-          }
+          {product.description}
         </p>
 
         <span
