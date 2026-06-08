@@ -1,3 +1,5 @@
+import api from "./api";
+
 export const getProducts = async () =>
   (await api.get("/products")).data;
 

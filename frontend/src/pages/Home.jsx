@@ -1,14 +1,21 @@
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import Hero from "../components/hero/Hero";
+import BrandBanner from "../components/branding/BrandBanner";
+import FeaturedProducts from "../components/products/FeaturedProducts";
 
-import { useEffect } from "react";
+import {
+  useEffect,
+  useState
+} from "react";
+
+import {
+  getProducts
+} from "../api/productApi";
 
 import {
   useBranding
 } from "../context/BrandingContext";
-
-import BrandBanner from "../components/branding/BrandBanner";
 
 export default function Home() {
 
@@ -16,10 +23,29 @@ export default function Home() {
     branding
   } = useBranding();
 
+  const [
+    products,
+    setProducts
+  ] = useState([]);
+
+  const [
+    loadingProducts,
+    setLoadingProducts
+  ] = useState(true);
+
   useEffect(() => {
 
     document.title =
       "ClothingCulture";
+
+    getProducts()
+      .then(setProducts)
+      .catch(console.error)
+      .finally(() =>
+        setLoadingProducts(
+          false
+        )
+      );
 
   }, []);
 
@@ -83,6 +109,11 @@ export default function Home() {
       </section>
 
       <BrandBanner />
+
+      <FeaturedProducts
+        products={products}
+        loading={loadingProducts}
+      />
 
       <Footer />
 
