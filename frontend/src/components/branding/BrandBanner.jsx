@@ -8,6 +8,11 @@ export default function BrandBanner() {
     branding
   } = useBranding();
 
+  const FILE_BASE =
+    import.meta.env
+      .VITE_API_BASE
+      .replace("/api", "");
+
   if (!branding) {
     return null;
   }
@@ -34,11 +39,17 @@ export default function BrandBanner() {
           {branding.logo && (
 
             <img
-              src={`${import.meta.env.VITE_API_BASE}${branding.logo}`}
+              src={
+                `${FILE_BASE}${branding.logo}`
+              }
               alt="ClothingCulture"
               className="
               brand-banner-logo
               "
+              onError={(e) => {
+                e.target.style.display =
+                  "none";
+              }}
             />
 
           )}
