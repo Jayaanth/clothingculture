@@ -704,3 +704,88 @@
 
   color:#111;
 }
+
+/* BRANDING */
+
+.branding-card{
+
+  max-width:800px;
+
+  background:white;
+
+  padding:2rem;
+
+  border-radius:
+    var(--radius-lg);
+
+  box-shadow:
+    var(--shadow-md);
+}
+
+.branding-card form{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:1rem;
+}
+
+.branding-card input,
+.branding-card textarea{
+
+  width:100%;
+
+  padding:1rem;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    var(--radius-md);
+}
+
+.branding-card label{
+
+  font-weight:600;
+
+  color:#333;
+}
+
+.branding-preview{
+
+  width:180px;
+
+  max-width:100%;
+
+  height:auto;
+
+  border-radius:12px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  padding:.5rem;
+
+  background:white;
+}
+
+.branding-card button{
+
+  width:fit-content;
+
+  background:
+    var(--color-primary);
+
+  color:white;
+
+  padding:
+    1rem 2rem;
+
+  border-radius:
+    999px;
+
+  font-weight:700;
+}
