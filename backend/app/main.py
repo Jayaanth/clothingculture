@@ -43,7 +43,7 @@ if not admin:
     db.add(
         Admin(
             username="Admin",
-            password="Annexure"
+            password=hash_password("Annexure")
         )
     )
 
