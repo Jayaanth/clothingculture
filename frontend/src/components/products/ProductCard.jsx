@@ -2,10 +2,6 @@ export default function ProductCard({
   product
 }) {
 
-  const imageUrl =
-  product.image ||
-  "/logo.svg";
-
   return (
 
     <div
@@ -16,7 +12,10 @@ export default function ProductCard({
     >
 
       <img
-        src={imageUrl}
+        src={
+          product.image ||
+          "/logo.svg"
+        }
         alt={product.name}
         className="
         product-image

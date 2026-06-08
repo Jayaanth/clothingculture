@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from fastapi.staticfiles import StaticFiles
 
 import os
@@ -11,7 +10,6 @@ from .database import SessionLocal
 
 from .models.admin import Admin
 from .models.product import Product
-
 from .models.branding import Branding
 from .models.inquiry import Inquiry
 
@@ -19,7 +17,6 @@ from .utils.security import hash_password
 
 from .routes.auth import router as auth_router
 from .routes.products import router as product_router
-
 from .routes.uploads import router as upload_router
 from .routes.branding import router as branding_router
 from .routes.inquiries import router as inquiry_router
@@ -43,7 +40,9 @@ if not admin:
     db.add(
         Admin(
             username="Admin",
-            password=hash_password("Annexure")
+            password=hash_password(
+                "Annexure"
+            )
         )
     )
 
@@ -67,13 +66,13 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "*"
-    ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Needed for logo uploads
 
 app.mount(
     "/uploads",
@@ -99,8 +98,6 @@ app.include_router(
     prefix="/api"
 )
 
-
-
 app.include_router(
     branding_router,
     prefix="/api",
@@ -119,12 +116,14 @@ app.include_router(
     tags=["Dashboard"]
 )
 
+
 @app.get("/")
 def root():
 
     return {
         "status": "running"
     }
+
 
 @app.get("/health")
 def health():
