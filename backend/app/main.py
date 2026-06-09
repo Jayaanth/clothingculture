@@ -139,8 +139,3 @@ def health():
 
 
 
-@app.get("/db-info")
-def db_info():
-    return {
-        "url": str(engine.url)
-    }

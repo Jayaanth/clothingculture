@@ -1,0 +1,52 @@
+# Query: category
+# ContextLines: 1
+
+13 results - 3 files
+
+backend/app/routes/dashboard.py:
+  27      total_categories = db.query(
+  28:         Category
+  29
+
+frontend/src/styles/admin.css:
+  531  
+  532: .category-admin-grid{
+  533  
+
+  543  
+  544:   .category-admin-grid{
+  545  
+
+frontend/src/styles/globals.css:
+  1090  
+  1091: /* CATEGORY CARD */
+  1092  
+  1093: .category-card{
+  1094  
+
+  1111  
+  1112: .category-card:hover{
+  1113  
+
+  1117  
+  1118: .category-icon{
+  1119  
+
+  1147  
+  1148: .category-card h3{
+  1149  
+
+  1156  
+  1157: .category-card p{
+  1158  
+
+  1165  
+  1166: /* CATEGORY GRID */
+  1167  
+  1168: .category-grid{
+  1169  
+
+  1183  
+  1184: .category-loading,
+  1185: .category-empty{
+  1186  
