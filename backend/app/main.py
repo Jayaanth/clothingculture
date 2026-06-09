@@ -3,6 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from .database import Base
 from .database import engine
@@ -132,5 +135,3 @@ def health():
         "status": "ok"
     }
 
-print("DATABASE_URL =", DATABASE_URL)
-print("TABLES =", Base.metadata.tables.keys())
