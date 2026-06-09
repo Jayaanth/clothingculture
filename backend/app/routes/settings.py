@@ -1,4 +1,8 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 import shutil
 
 from fastapi import APIRouter, UploadFile, File
