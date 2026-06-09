@@ -131,3 +131,6 @@ def health():
     return {
         "status": "ok"
     }
+
+print("DATABASE_URL =", DATABASE_URL)
+print("TABLES =", Base.metadata.tables.keys())
