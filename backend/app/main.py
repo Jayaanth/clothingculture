@@ -25,6 +25,8 @@ from .routes.branding import router as branding_router
 from .routes.inquiries import router as inquiry_router
 from .routes.dashboard import router as dashboard_router
 
+from .database import engine
+
 
 Base.metadata.create_all(
     bind=engine
@@ -135,3 +137,10 @@ def health():
         "status": "ok"
     }
 
+
+
+@app.get("/db-info")
+def db_info():
+    return {
+        "url": str(engine.url)
+    }

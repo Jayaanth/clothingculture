@@ -35,3 +35,5 @@ def get_db():
 
     finally:
         db.close()
+
+print(DATABASE_URL)
